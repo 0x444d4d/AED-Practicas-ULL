@@ -75,9 +75,12 @@ public:
         ostream& write(ostream& os) const
         {
 
-            os << setw(4) << m_ << endl;
-            os << setw(4) << n_ << endl;
-            os << endl;
+//            os << setw(4) << m_ << endl;
+//            os << setw(4) << n_ << endl;
+//            os << endl;
+
+            os << "Numero de filas:" << setw(4) << m_ << endl;
+            os << "Numero de columnas:" << setw(4) << n_ << endl;
             
              for(int i = 1; i <= m_; i++){
                  for(int j = 1; j <= n_; j++)
@@ -128,9 +131,11 @@ template <>
 ostream&  matrix_t<int>::write(ostream& os) const
 {
 
-    os << setw(4) << m_ << endl;
-    os << setw(4) << n_ << endl;
-    os << endl;
+    //os << setw(4) << m_ << endl;
+    //os << setw(4) << n_ << endl;
+    //os << endl;
+    os << "Numero de filas:" << setw(4) << m_ << endl;
+    os << "Numero de columnas:" << setw(4) << n_ << endl;
     
      for(int i = 1; i <= m_; i++){
          for(int j = 1; j <= n_; j++)
@@ -146,9 +151,11 @@ template <>
 ostream&  matrix_t<double>::write(ostream& os) const
 {
 
-    os << setw(4) << m_ << endl;
-    os << setw(4) << n_ << endl;
-    os << endl;
+    //os << setw(4) << m_ << endl;
+    //os << setw(4) << n_ << endl;
+    os << "Numero de filas:" << setw(4) << m_ << endl;
+    os << "Numero de columnas:" << setw(4) << n_ << endl;
+    //os << endl;
     
      for(int i = 1; i <= m_; i++){
          for(int j = 1; j <= n_; j++)

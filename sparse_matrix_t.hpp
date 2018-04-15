@@ -59,11 +59,14 @@ enum {COL_CONF, ROW_CONF};
 
 		ostream& write(ostream& os)
 		{
+      if (!conf_) cout << "configuracion por columnas" << endl;
+      else cout << "configuracion por filas" << endl;
       os << "Numero de filas:" << setw(4) << m_ << endl;
       os << "Numero de columnas:" << setw(4) << n_ << endl;
+
 			///////// (impresión de los elementos dispersos)
       for (short unsigned inx = 0; inx < sparse_.size(); ++inx) {
-        sparse_[0].write(os);
+        sparse_[inx].write(os);
         os << endl;
       }
 
@@ -73,6 +76,9 @@ enum {COL_CONF, ROW_CONF};
     bool is_zero(double val, double eps) {
       return ((fabs(val) < eps)? true : false); 
     }
+
+
+    void mul(matrix_t<double> &M, matrix_t<double>&S);
     
 			
     sparse_matrix_t& operator=(sparse_matrix_t &sm) {
@@ -85,6 +91,37 @@ enum {COL_CONF, ROW_CONF};
       return *this;
     }
 
-
+    double get_at(short unsigned row, short unsigned col);
 	};
+
+
+
+  void sparse_matrix_t::mul(matrix_t<double> &M, matrix_t<double> &S) {
+  
+    if (n_ == M.get_m()) {
+
+      S.resize(m_, M.get_n());
+
+      for(short unsigned row = 0; row < n_; ++row)
+        for(short unsigned col= 0; col < M.get_m(); ++col)
+          for(short unsigned itr = 0; itr < m_; ++itr)
+            S(row+1, col+1) += get_at(row, itr) * M(itr+1, col+1);
+
+    } else cout << "No es posible realizar la multiplicacion" << endl;
+
+  }
+
+
+  
+  double sparse_matrix_t::get_at(short unsigned row, short unsigned col) {
+    sll_node_t<pair_t<double> > *aux = sparse_[col].head();
+    while (aux != NULL) {
+      if (aux->get_data().get_inx() == (row + 1)) {
+        return  (aux->get_data().get_val());
+      }
+      aux = aux->get_next();
+    }
+
+    return 0;
+  }
 }

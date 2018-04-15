@@ -10,17 +10,21 @@ using namespace AED;
 
 int main (void)
 {
-	matrix_t<double> M;
+	matrix_t<double> M, N;
   ofstream inFile("prueba.txt");
 
 	M.read(cin);
 
 	sparse_matrix_t SM(M, 1E-3, COL_CONF);
-  sparse_matrix_t SN();
+
+	SM.write(cout);
+
+  SM.mul(M, N);
+
+  N.write(cout);
 
   //SN = SM;
  
-	SM.write(cout);
 }
 
 
