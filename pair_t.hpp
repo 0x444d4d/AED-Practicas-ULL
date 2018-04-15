@@ -46,6 +46,7 @@ public:
 		is >> inx_ >> val_;
 		return is;
 	}
+
 };
 
 template<>
@@ -55,4 +56,7 @@ ostream& pair_t<double>::write(ostream& os) const {
 	return os;
 }
 
-
+template <class T>
+ostream& operator<<(ostream &os, const pair_t<T> &pair) {
+  return pair.write(os);
+}

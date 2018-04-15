@@ -52,7 +52,7 @@ public:
             return v_[pos(i,j)];
         }        
         
-		T& operator() (int i, int j)
+    		T& operator() (int i, int j)
         {
             return v_[pos(i,j)];
         }
