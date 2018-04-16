@@ -74,11 +74,6 @@ public:
         
         ostream& write(ostream& os) const
         {
-
-//            os << setw(4) << m_ << endl;
-//            os << setw(4) << n_ << endl;
-//            os << endl;
-
             os << "Numero de filas:" << setw(4) << m_ << endl;
             os << "Numero de columnas:" << setw(4) << n_ << endl;
             
@@ -86,7 +81,7 @@ public:
                  for(int j = 1; j <= n_; j++)
                           os << v_[pos(i, j)] << " ";
                      
-                os << endl;
+               os << endl;
              }      
 
             return os;
