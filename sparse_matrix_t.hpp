@@ -114,7 +114,8 @@ enum {COL_CONF, ROW_CONF};
       for(short unsigned row = 0; row < m_; ++row)
         for(short unsigned col= 0; col < M.get_n(); ++col)
           for(short unsigned itr = 0; itr < M.get_m(); ++itr)
-            S(row+1, col+1) += get_at(row, itr) * M(itr+1, col+1);
+	    if (aux = get_at(row, itr))
+            	S(row+1, col+1) += aux * M(itr+1, col+1);
             //cout << get_at(row, col);
 
     } else cout << "No es posible realizar la multiplicacion" << endl;
