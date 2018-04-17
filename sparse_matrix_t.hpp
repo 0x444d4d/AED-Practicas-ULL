@@ -88,7 +88,7 @@ enum {COL_CONF, ROW_CONF};
       sparse_.resize(n_);
 
       for (short unsigned col = 0; col < n_; ++col)
-          for (short unsigned row = 0; row < m_; ++row)
+          for (short row = (m_ - 1); row >= 0; --row)
               if (!is_zero( M(row + 1, col + 1), eps )) {
                 sparse_[col].insert_head( new sll_node_t<pair_t<double> >());
                 sparse_[col].head()->set_data(pair_t<double>(row+1, M(row+1, col+1)));
@@ -98,7 +98,7 @@ enum {COL_CONF, ROW_CONF};
       sparse_.resize(m_);
 
       for (short unsigned row = 0; row < m_; ++row)
-          for (short unsigned col = 0; col < n_ ; ++col)
+          for (short col = (n_ - 1); col >= 0; --col)
               if (!is_zero( M(row + 1, col + 1), eps )) {
                 sparse_[row].insert_head( new sll_node_t<pair_t<double> >());
                 sparse_[row].head()->set_data(pair_t<double>(col+1, M(row+1, col+1)));
@@ -155,6 +155,7 @@ enum {COL_CONF, ROW_CONF};
   int sparse_matrix_t::primer_no_nulo(short unsigned col) {
     
     sll_node_t<pair_t<double> > *aux;
+    --col;
     if (!get_conf()) {
       
       aux = sparse_[col].head();
@@ -168,9 +169,9 @@ enum {COL_CONF, ROW_CONF};
     
       for (short unsigned row = 0; row < get_n(); ++row) {
         aux = sparse_[row].head();
-        while (aux != NULL && (aux->get_data().get_inx() == (row + 1))) {
-          if (aux->get_data().get_inx() == col)
-            return aux->get_data().get_inx();
+        while (aux != NULL) {
+          if (aux->get_data().get_inx() == (col + 1))
+            return (row + 1);
             aux = aux->get_next();
         }
       }   
