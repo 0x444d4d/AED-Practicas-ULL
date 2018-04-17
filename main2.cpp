@@ -28,7 +28,8 @@ int main (void) {
       case 1: 
         system("clear");
         M.read(cin);
-        SM.build(M, 1E-3, ROW_CONF);
+        cin >> selector;
+        SM.build(M, 1E-3, selector);
 
         break;
     
@@ -54,6 +55,14 @@ int main (void) {
         exit(0);
         break;
 
+      case 5:
+        system("clear");
+        cin >> selector;
+        cout << SM.primer_no_nulo(selector) << endl;
+        getchar();
+        getchar();
+        break;
+
       default:
         cout << "El caracter introducido no es valido";
     }
@@ -66,6 +75,7 @@ void print_menu(void) {
   cout << "1.- Cargar matriz" << endl;
   cout << "2.- Mostrar matriz" << endl;
   cout << "3.- Multiplicar matriz" << endl;
+  cout << "5.- primer no nulo" << endl;
   cout << "4.- Salir" << endl;
 }
 

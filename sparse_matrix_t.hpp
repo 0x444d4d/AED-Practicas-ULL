@@ -116,7 +116,7 @@ enum {COL_CONF, ROW_CONF};
       for(short unsigned row = 0; row < m_; ++row)
         for(short unsigned col= 0; col < M.get_n(); ++col)
           for(short unsigned itr = 0; itr < M.get_m(); ++itr)
-	    if (double aux = get_at(row, itr))
+	          if (double aux = get_at(row, itr))
             	S(row+1, col+1) += aux * M(itr+1, col+1);
             //cout << get_at(row, col);
 
@@ -156,8 +156,12 @@ enum {COL_CONF, ROW_CONF};
     
     sll_node_t<pair_t<double> > *aux;
     --col;
+
     if (!get_conf()) {
-      
+      aux = sparse_[col].head();
+      if (aux != NULL) 
+        return  (aux->get_data().get_inx());
+/*
       aux = sparse_[col].head();
       while (aux != NULL) {
         if (aux->get_data().get_val()) {
@@ -165,6 +169,7 @@ enum {COL_CONF, ROW_CONF};
         }
         aux = aux->get_next();
       }
+*/
     } else {
     
       for (short unsigned row = 0; row < get_n(); ++row) {
@@ -172,7 +177,7 @@ enum {COL_CONF, ROW_CONF};
         while (aux != NULL) {
           if (aux->get_data().get_inx() == (col + 1))
             return (row + 1);
-            aux = aux->get_next();
+          aux = aux->get_next();
         }
       }   
     }
