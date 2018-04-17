@@ -66,6 +66,8 @@ enum {COL_CONF, ROW_CONF};
     int get_n() {return n_;}
     int get_conf() {return conf_;}
 
+    int primer_no_nulo(short unsigned col);
+
 	};
 
   void sparse_matrix_t::build(const matrix_t<double> &M, double eps, int conf) {
@@ -148,5 +150,31 @@ enum {COL_CONF, ROW_CONF};
       }
 
     return 0;
+  }
+
+  int sparse_matrix_t::primer_no_nulo(short unsigned col) {
+    
+    sll_node_t<pair_t<double> > *aux;
+    if (!get_conf()) {
+      
+      aux = sparse_[col].head();
+      while (aux != NULL) {
+        if (aux->get_data().get_val()) {
+          return  (aux->get_data().get_inx());
+        }
+        aux = aux->get_next();
+      }
+    } else {
+    
+      for (short unsigned row = 0; row < get_n(); ++row) {
+        aux = sparse_[row].head();
+        while (aux != NULL && (aux->get_data().get_inx() == (row + 1))) {
+          if (aux->get_data().get_inx() == col)
+            return aux->get_data().get_inx();
+            aux = aux->get_next();
+        }
+      }   
+    }
+    return (-1);
   }
 }
