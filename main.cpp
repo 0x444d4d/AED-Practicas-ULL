@@ -3,11 +3,13 @@
 #include "stack_v_t.hpp"
 
 using namespace std;
+
 void load(ifstream &inFile, stack_m &M);
+bool equilibrada(void);
 
 int main(void)
 {
-  stack_m M(50, 30);
+  stack_m M(34, 34);
   ifstream inFile;
   inFile.open("quijote.txt");
 
@@ -17,6 +19,9 @@ int main(void)
     cout << M.top();
     M.pop();  
   }
+  cout << endl;
+
+  cout << equilibrada();
 }
 
 void load(ifstream &inFile, stack_m &M)
@@ -26,4 +31,23 @@ void load(ifstream &inFile, stack_m &M)
   {
     M.push(aux);
   }
+}
+
+bool equilibrada(void)
+{
+  string inString;
+  cin >> inString;
+  stack_m M(1,inString.size());
+
+  //if (inString[0] == ')') return false;
+  for (unsigned inx = 0; inx < inString.size(); ++inx)
+  {
+    if (inString[inx] == '(') M.push(')');
+    if (inString[inx] == ')' && M.pop()) return false;//M.pop();
+    //if (inString[inx] == ')') M.pop();
+    //if (inString[inx] == ')' && M.empty) return false;
+  }   
+
+  return M.empty();
+
 }
