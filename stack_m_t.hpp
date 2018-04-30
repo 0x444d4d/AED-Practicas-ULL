@@ -54,11 +54,11 @@ bool stack_m::pop(void)
     return true;
   } else return false;
 }
-/*
-void stack_m::resize(int m, int n): m_(m), n_(n)
+
+void stack_m::resize(int m, int n)
 {
-  top = -1;
+  m_ = m;
+  n_ = n;
+  top_ = -1;
   stack_.resize(m,n);
 }
-*/
-

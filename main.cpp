@@ -11,6 +11,8 @@ bool equilibrada(void);
 void print_stack(stack_m &M);
 bool es_palindromo(string cadena);
 
+
+
 int main(void)
 {
   stack_m M(34, 34);
@@ -24,6 +26,7 @@ int main(void)
     print_menu();
     std::cin >> selector;
     std::cin.get();
+
     switch(selector)
     {
       case 1:
