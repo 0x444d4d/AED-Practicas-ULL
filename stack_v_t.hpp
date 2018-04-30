@@ -20,8 +20,8 @@ class stack_m
   ~stack_m(void) {};
 
 
-  bool full(void) {return ((top_ == (m_ * n_)) ? true:false);}
-  bool empty(void) {return (top_ == -1)? true:false;}
+  bool full(void) {return (top_ == (m_ * n_);}
+  bool empty(void) {return (top_ == -1);}
 
 
   bool push(char aux);
