@@ -28,6 +28,7 @@ class stack_m
   bool pop(void);
   char top(void) {return stack_(inx_to_row(top_), inx_to_col(top_));}
   bool flush(void) {top_ = -1;}
+  void resize(int m, int n);
 
   private:
 
@@ -54,4 +55,9 @@ bool stack_m::pop(void)
   } else return false;
 }
 
+void stack_m::resize(int m, int n): m_(m), n_(n)
+{
+  top = -1;
+  stack_.resize(m,n);
+}
 
