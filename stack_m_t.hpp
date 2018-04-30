@@ -27,6 +27,7 @@ class stack_m
   bool push(char aux);
   bool pop(void);
   char top(void) {return stack_(inx_to_row(top_), inx_to_col(top_));}
+  bool flush(void) {while(pop());}
 
   private:
 
