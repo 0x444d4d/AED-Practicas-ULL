@@ -1,8 +1,8 @@
 #pragma once
 
-//#include <iostream>
 #include "template_matrix_t.hpp"
-
+namespace  AED
+{
 class stack_m
 {
   private:
@@ -14,9 +14,7 @@ class stack_m
 
   public:
 
-  //Constructor
   stack_m(int m, int n): top_(-1), m_(m), n_(n), stack_(m, n) {}
-  //Destructor
   ~stack_m(void) {};
 
 
@@ -28,16 +26,16 @@ class stack_m
   bool pop(void);
   char top(void) {return stack_(inx_to_row(top_), inx_to_col(top_));}
   bool flush(void) {top_ = -1;}
- // void resize(int m, int n);
 
   private:
 
   unsigned int inx_to_row(int inx) {return (( inx / n_) + 1);}
   unsigned int inx_to_col(int inx) {return (( inx % n_) + 1);}
 };
+}
 
-
-
+using namespace AED
+{
 bool stack_m::push(char aux)
 {
   if(!full()) {
@@ -61,4 +59,5 @@ void stack_m::resize(int m, int n)
   n_ = n;
   top_ = -1;
   stack_.resize(m,n);
+}
 }
