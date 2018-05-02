@@ -12,7 +12,6 @@ void print_stack(stack_m &M);
 bool es_palindromo(string cadena);
 
 
-
 int main(void)
 {
   stack_m M(34, 34);
@@ -80,36 +79,24 @@ int main(void)
 }
 
 
-
-
-
-
 void load(istream &is, stack_m &M)
 {
   char aux;
-  //while (is >> std::noskipws >> aux && !M.full())
-  //{
-   // M.push(aux);
-  //}
+
   M.flush();
   while (is >> std::noskipws >> aux && M.push(aux));
 }
-
 
 void load(stack_m &M)
 {
   string inString;
   std::cin >> inString;
   std::cin.get();
-  //stack_m M(1,inString.size());
 
   M.flush();
   for (unsigned inx = 0; inx < inString.size(); ++inx)
-  {
     M.push(inString[inx]);
-  }
 }
-
 
 bool equilibrada(void)
 {
@@ -118,15 +105,11 @@ bool equilibrada(void)
   std::cin.get();
   stack_m S(1,inString.size());
 
-  //if (inString[0] == ')') return false;
   for (unsigned inx = 0; inx < inString.size(); ++inx)
   {
     if (inString[inx] == '(') S.push(')');
-    if (inString[inx] == ')' && !S.pop()) return false;//M.pop();
-    //if (inString[inx] == ')') M.pop();
-    //if (inString[inx] == ')' && M.empty) return false;
+    if (inString[inx] == ')' && !S.pop()) return false;
   }   
-
   return S.empty();
 }
 
@@ -142,7 +125,6 @@ void print_menu(void)
   std::cout << "6.- Salir del programa." << std::endl;
 }
 
-
 void print_stack(stack_m &M)
 {
   while( !M.empty() )
@@ -150,16 +132,14 @@ void print_stack(stack_m &M)
     std::cout << M.top();
     M.pop();  
   }
-}
 
 
 bool es_palindromo(string cadena)
 {
   stack_m A(1, cadena.size());
+  
   for (unsigned int inx = 0; inx < cadena.size(); ++inx)
-  {
     A.push(cadena[inx]);
-  }   
 
   unsigned inx = 0;
   while (cadena[inx] == A.top() && !A.empty())
@@ -167,14 +147,5 @@ bool es_palindromo(string cadena)
     A.pop();
     ++inx;
   }
-
-  if (A.empty()) return true;
-  else return false;
-    
-    
-
-  //for (unsigned int inx = 0; inx z cadena.size(); ++inx)
-  //{
-    
- // }   
+  return A.empty();   
 }
